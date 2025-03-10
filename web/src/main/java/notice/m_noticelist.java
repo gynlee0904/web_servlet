@@ -25,7 +25,15 @@ public class m_noticelist {
 	m_dbinfo db = new m_dbinfo();
 	
 	public m_noticelist(int s) {
-		this.spage= s; //sql 쿼리문에서 limit를 사용하기위함
+		if(s>0) {  //1번 페이징 번호 외에 다른 번호를 클릭했을 때 
+			
+			this.spage= (s - 1)*ea; //sql 쿼리문에서 limit를 사용하기위함
+			//(페이지번호 - 1)*한페이지당 출력할 개수  
+		}
+		else {
+			this.spage= s; 
+		}
+		
 	}
 	
 	public ArrayList<ArrayList<String>> db_data(){
