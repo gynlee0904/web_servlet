@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 250305 -->
+<title>자바스크립트의 정규식코드 사용법</title>
+</head>
+<body>
+
+</body>
+<script >
+// 정규식코드 : replace(), replaceAll(), ★★test()★★, match(),exec(),split(),search(),....
+//정규식코드 패턴 => / /;  ""안씀
+/* 정규식코드 옵션 : 
+	g : 전체 문자열을 파악 
+	i : 대문자와 소문자를 동일하게 인식 
+	[] : 문자열의 범위 ex)[a-z]=>문자a~z까지  
+	^ : 부정의 뜻. ~이 아닌. (=>not)
+	{} : 패턴형태. 자릿수
+	\ : 문자를 구분하여 설정
+	
+ */
+ 
+//exec() :match메서드와 유사(단, 무조건 첫번째 매칭 결과만 반환)
+var word7 = "hong@nate.com"; 
+var regp7 = /[a-z]/g;  //=>/ /안에 일치하는 문자가 있으면 배열로 출력. 없으면 null로 출력됨 
+console.log(regp7.exec(word7));  
+
+/***************************/  
+//match() 
+var word6 = "hong@nate.com"; 
+var regp6 = /[ㄱ-힣]/g;  //=>/ /안에 매치되는 문자가 있으면 배열로 출력. 없으면 null로 출력됨 
+// console.log(word6.match(regp6));  //=>없으니까 null
+
+/***************************/  
+var word5 = "홍길동aaabbb"; 
+var regp5 = /[^ㄱ-힣a-zA-Z]/g;  //한글,영문이 아닌게 들어갔는지 
+// console.log(regp5.test(word5));  //=>없으니까 false
+
+/***************************/  
+var word4 = "010-1234-*5678*"; 
+var regp4 = /[^0-9]/g;  //[^]부정의뜻. 0~9외의 다른 문자가 있는지
+// console.log(regp4.test(word4));   //=>있으니까 true
+
+/***************************/  
+//test() : true, false 출력 
+var word3 = "010aa1234b5678"; 
+var regp3 = /[a-z]/g;
+// console.log(regp3.test(word3));  //[]범위내의 문자 혹은 숫자가 있으면 true 출력 , 하나도 없으면 false 출력 
+
+/***************************/ 
+var word2 = " 1 a 2 c 3 d ";
+// console.log(word2.trim());  //trim() => 앞뒤의 공백을 없애줌(정규식코드 아님). 가운데 공백은 못지움
+ 
+var regp2 = / /g;
+// console.log(word2.replace(regp2,""));  //모든 공백 지워줌
+ 
+/***************************/ 
+var word = "a12A34a56bz001"
+var regp = /a/;  //소문자 a만 찾아냄 
+// console.log(word.replace(regp,""));  //처음 만나는 소문자 a를 없애기
+
+var regp = /a/g;  //모든 a를 찾아냄 
+//g가 없으면 a가 아닌 문자 나왔을때 해당 첫글자만 검토함
+// console.log(word.replace(regp,""));  //모든 소문자 a를 없애기 
+
+var regp = /a/gi;  // 모든 a를 찾아냄 + 대소문자 구별안함 
+// console.log(word.replace(regp,""));  //모든 대소문자 a를 없애기 
+
+
+</script>
+</html>

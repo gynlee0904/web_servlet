@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>250218 응용문제(선생님코드)</title>
+</head>
+<body>
+<form id="frm" method="post" action="./idsearch2.do" >
+	고객명 : <input type = "text" name="username" required> <br>
+	연락처 : <input type = "tel" pattern="(010|011)\d{3,4}\d{4}" name="phone" maxlength="11" required> '-'미포함 숫자만 입력해주세요. <br>
+	<!-- 인풋타입tel : 모바일 전용이나 버튼이 인풋타입submit일때 웹에서도 사용가능. 숫자만 입력하게 함 -->
+	이메일 : <input type = "email" name="email" pattern="[a-zA-Z0-9._-]+@" required> <br>
+	<!-- required : HTML5전용속성. 입력을 필수로 강제함. 버튼이 인풋타입submit일때 사용가능. -->
+	<!-- pattern : HTML5전용 정규식코드. 규칙적인 데이터를 입력하도록 강제함. 
+		{},(),[]. \d(숫자) or \D(문자)or \b(문자)로 입력값의 범위를 설정할 수 있음.\은 파티션 -->
+	<input type="submit" value="아이디 찾기" >
+</form>
+</body>
+
+</html>

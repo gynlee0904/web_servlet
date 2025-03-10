@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 250219 -->
+<title>basket_part1 - 장바구니</title>
+</head>
+<style>
+	li {
+		 list-style-type : none
+	}
+</style>
+<body>
+
+<form id="frm" method="get" action="http://172.30.1.49:8080/web/paylist.do">
+	<p>장바구니</p>
+	<ul>
+		<li><input type="checkbox" name="product" value="프리즘코리아 CP55G5-399000" onclick="p_choice();">프리즘코리아 CP55G5 399000</li>
+		<li><input type="checkbox" name="product" value="삼성전자 QLED KQ85-2192810" onclick="p_choice();">삼성전자 QLED KQ85 2192810</li>
+		<li><input type="checkbox" name="product" value="LG전자 올레드 evo-2732230" onclick="p_choice();">LG전자 올레드 evo 2732230</li>
+		<li><input type="checkbox" name="product" value="이스트라 스마트TV-359000" onclick="p_choice();">이스트라 스마트TV 359000</li>
+		<li><input type="checkbox" name="product" value="LG전자 울트라 HD-79000" onclick="p_choice();">LG전자 울트라 HD 79000</li>
+	</ul>
+	<br>
+	최종결제금액 : <span id="totalp"></span>원
+	<input type="hidden" name="total" id="total">  <!-- 콘트롤러로 넘길 히든인풋값(최종금액) -->
+	<br><br>
+	<input type="button" value="결제하기" onclick="go_part2();">
+
+</form>
+</body>
+<script>
+	var totalp = document.getElementById("totalp");  //화면에 노출될 최종금액값
+	var total = document.getElementById("total");  //콘트롤러로 넘길 최종금액값 
+	var ob = frm.product;  
+	
+	var p_choice = function(){
+// 		var checkbox = event.target;
+// 		var priceText = checkbox.parentElement.innerText.split(" ");
+// 		var price = Number(priceText[priceText.length-1]);
+// 		console.log(ob.value)
+		totalp.innerHTML=""; 
+		
+		var totalPrice = 0;
+		var w=0;
+		while(w < ob.length){
+			if(ob[w].checked == true){
+				var checkbox = ob[w];
+				var priceText = checkbox.parentElement.innerText.split(" ");
+				var price = Number(priceText[priceText.length-1]);
+				
+				totalPrice = totalPrice + price;
+			}
+			w++;
+		}
+		totalp.append(totalPrice);
+		total.value=totalPrice;
+	}
+	
+	
+	
+	
+	
+	var go_part2 = function () {
+		frm.submit();
+	}
+
+
+</script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>250218 - IO(첨부파일 업로드)</title>
+</head>
+<body>
+<form id="frm" method="post" action="./fileupload.do" enctype="multipart/form-data">
+	<!-- 첨부파일기능이 있으면 method는 무조건 post로만 전송 가능  -->
+	<!-- enctype="multipart/form-data" : form태그에 이걸 붙여야 백엔드로 첨부파일 전송이 가능함 -->
+	첨부파일 : <input type="file" name="mfile" > <br>
+	<!-- multiple : 하나의 인풋오브젝트에 여러개의 파일을 첨부할 수 있게 함  -->
+
+	<button type="button" onclick="upload();">파일업로드</button>
+</form>
+
+<br><br><br>
+
+<form id="f" method="post" action="./fileupload2.do" enctype="multipart/form-data">
+<!-- 	첨부파일 : <input type="file" name="mfiles"> <br> -->
+<!-- 	첨부파일 : <input type="file" name="mfiles"> <br> -->
+	첨부파일 : <input type="file" name="mfiles" accept=".png,.jpg,.bmp,.gif" multiple> *최대5개까지만 첨부 가능 <br>
+	<!-- accept : 올릴수 있는 파일 확장자를 지정하는 속성  "image/*" 로 치면 모든 이미지파일 다 받아줌 -->
+	고객명 : <input type = "text" name="username"> <br>
+	<button type="button" onclick="upload2();">파일업로드2</button>
+</form>
+
+
+</body>
+<script>
+	function upload(){
+		frm.submit();
+	}
+	
+	function upload2(){
+		var file = document.getElementsByName("mfiles")[0].files;  //파일명 가져오기 
+		//.files : multiple에서만 쓰이는 JS속성. 여러개를 선택시 각각을 배열로 구분하여 설정 (.split()과 비슷)
+// 		var file = f.mfiles.files; //이렇게 써도됨 .
+		//form id를 기점으로 name값 오브젝트를 가져오기 
+// 		console.log(file.length);  	//file.length => 첨부된 파일 개수  
+
+		if(file.length>5){
+			alert("첨부파일 개수는 최대 5개까지입니다.");
+		}
+		else{
+			var cnt = 0;
+			var w=0;
+			while(w<file.length){  //첨부파일 개수만큼 반복문 작동시켜 파일 각각의 용량을 체크
+				var size = file[w].size;  //.size=> 바이트로 확인 
+				if(size > 2097152){
+					cnt++;
+				}
+				w++;
+			}
+			 
+			if(cnt != 0){  //반복문으로 파일 각각의 용량을 확인했을때 2mb이상이 있을경우 
+				alert("첨부파일 용량이 2MB이상입니다.");
+			}else{  //2MB이상의 파일이 하나도 없을경우 백엔드에 전달 
+		 		f.submit();
+			}
+		}
+	
+
+	}
+</script>
+</html>

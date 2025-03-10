@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- 250304 -->
+<title>쇼핑몰 회원가입</title>
+</head>
+<body>
+	<form id="frm" method="post" action="./join_ok.do" >
+	<input type="hidden" id="idck" value="">  <!-- 중복체크 눌러서 사용가능한 아이디 결과를 받았는지 체크하는 속성 -->
+		<p>[회원가입]</p>
+		<div> 
+			<label><input type="radio" name="spart" value="P" checked onclick="frm_view(this.value);"> 일반회원</label>
+			<label><input type="radio" name="spart" value="C" onclick="frm_view(this.value);"> 사업자회원 </label>
+			<!-- frm_view(this.value) : 라디오버튼 클릭시 해당태그안의 value값이 태워져서 날아감 -->
+			<br><br>
+			회원아이디 <br>
+			<input type="text" name="sid"> <input type="button" value="중복체크" onclick="idcheck()"> <br>
+			
+			비밀번호 <br>
+			<input type="password" name="spw"> <br>
+			
+			고객명 및 회사명 <br>
+			<input type="text" name="sname"> <br>
+	
+			연락처 <br>
+			<input type="text" name="stel" maxlength="11"> "-"없이 입력 <br>
+			
+			이메일 주소 <br>
+			<input type="text" name="semail"> <br>
+			
+			<span id="corp" style="display:none;">
+			사업자 번호 <br>
+			<input type="text" name="sno" maxlength="13"> "-"없이 입력 <br>
+			</span>
+			
+			<br>
+			<input type="button" value="회원가입" onclick="memberok()">
+		</div>
+	</form>
+	
+</body>
+<script src="./join.js?v=3"></script>
+</html>

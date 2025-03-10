@@ -1,0 +1,24 @@
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	ArrayList<String> data = (ArrayList)request.getAttribute("data");  
+//원시배열로 받으면 jsp에서 풀기 어려움. 콘트롤러에서 클래스배열로 바꿔 받으면 편함
+//콘트롤러에서 클래스배열로 전달된 값을 클래스 배열로 jsp에서 핸들링 
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 250220 -->
+<title>배송정보 출력</title>
+</head>
+<body>
+	<!-- 클래스배열값을 jsp에 출력 -->
+	고객명 : <%= data.get(0) %> <br>
+	이메일 : <%= data.get(1) %> <br>
+	연락처 : <%= data.get(2) %> <br>
+	주소 :  <%= data.get(3) %> <br>
+</body>
+
+</html>

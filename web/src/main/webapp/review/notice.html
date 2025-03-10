@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<!-- JS : 버전 4.0까지만 있음 (웹에서만 작동함. 모바일 핸들링 어려움). function(){}형태만 있음 
+	 => ECMAScript(es)로 발전 : 변수선언이 바뀜(let(=>변수), const(=>상수))
+	ES4 : var aa=function(){}형태, class개념 나옴
+	ES5 = JS 5.0 
+	ES6 (APP)
+	=> REACT, VUE 의 등장으로 프엔전국시대 열림 
+	=> ECMA2024까지 발전 
+-->
+<head>
+<meta charset="UTF-8">
+<!-- 250221 -->
+<title>공지게시판 글쓰기</title>
+</head>
+<body>
+<form id="frm" method="post" action="./noticeok.do">
+<!-- get: 보안약함, 전송값에 제한있음(1024byte) but 속도 빠름 -->
+	<input type="hidden" name="se" value="korea.com">
+	제목 : <input type="text" name="subject"> <br>
+	글쓴이 : <input type="text" name="writer"> <br>
+	내용 : <textarea name="ntext" style="width:500px; height:300px;"></textarea> 
+	<!-- 등록일자는 백엔드에서 핸들링 -->
+</form>
+<br><br>
+<input type="button" value="글등록" onclick="notice_write();">
+</body>
+<script src="./notice.js?v=1"></script>
+</html>

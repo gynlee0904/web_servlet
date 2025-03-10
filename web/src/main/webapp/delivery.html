@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 250220 -->
+<title>배송정보 입력 시스템 </title>
+</head>
+<body>
+<form id="frm" method="post" action="./deliveryok.do">
+	고객명 : <input type="text" name="mname"> <br>
+	이메일 : <input type="text" id="mail1"> @ <input type="text" id="mail2"> <br>
+		   <input type="hidden" name="memail"> <!-- hidden : 프엔과 백이 서로 약속한 값을 주고받는 역할  -->	
+	연락처 : <input type="text" id="tel1" maxlength="3"> 
+			- <input type="text" id="tel2" maxlength="4"> 
+			- <input type="text" id="tel3" maxlength="4"> <br>
+		   <input type="hidden" name="mtel">  
+	주소 : <input type="text" name="maddr"> <br><br>
+	<input type="button" value="배송입력" onclick="info_ok();">
+</form>
+
+<!-- action : 상대경로 (=> 자신의 피씨 안) 
+			  절대경로 http:// ~ (=> 다른사람의 pc에 전달할 때)
+	 web.xml 만들때 주의할 점 : 서블렛 생성 후에 코드 입력하기 (만들기 전에 등록하면 오류남)   -->
+<!-- servlet, spring, spring-boot 환경설정 : properties, xml 로 환경설정 세팅함 -->
+<!-- .do / .jsp 차이점 => .do는 컨트롤러 , .jsp는 뷰  -->
+</body>
+<script src="./delivery.js"></script>
+</html>

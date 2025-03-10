@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 250305 -->
+<title>자바스크립트의 정규식코드 사용법2</title>
+</head>
+<body>
+
+</body>
+<script>
+//정규식을 이용하여 패턴과 함께 단어를 체크하는 코드
+var word = "hong!@naver.com";
+var regp = /[a-z0-9.-_]+@[a-z0-9ㄱ-힣]/i;  //a~z,0~9,특수문자.-_세가지 
+console.log(regp.test(word));  //=>regp에 있는 문자 외 다른 문자가 있으니까 false
+
+var word2 = "ho n g@naver.com";
+var regp2 = /[a-z0-9.-_]+@[a-z0-9ㄱ-힣]/i;   
+console.log(regp2.test(word2));  //=>공백 인식 못함. true뜸
+
+var word3 = "hong!!@naver.com";
+var regp3 = /^[a-z0-9.-_]+@[a-z0-9ㄱ-힣]/i;  //a~z,0~9,특수문자.-_세가지가 아닌 다른게 있는지 (있으면 true, 없으면 false)
+//[]그룹이 여러개일때 부정^을 쓰려면 []밖에 쓴다
+console.log(regp2.test(word2));  //=>!있으니까 true
+
+var word4 = "ho n g@naver.com";
+var regp4 = /^[a-z0-9.-_]+@[a-z0-9ㄱ-힣]/i;  //a~z,0~9,특수문자.-_세가지가 아닌 다른게 있는지 (있으면 true, 없으면 false)
+console.log(regp4.test(word4));  //=>공백 인식 못해서 false. 
+
+
+var word5 = "ho n g@naver.com";
+var word6 = word5.replace(/ /g, "");
+console.log(word6);  //=>hong@naver.com
+var regp5 = /[^a-z0-9.-_]+@[a-z0-9ㄱ-힣]/i;  //a~z,0~9,특수문자.-_세가지가 아닌 다른게 있는지 (있으면 true, 없으면 false)
+console.log(regp5.test(word6));  //=>false
+
+
+</script>
+</html>

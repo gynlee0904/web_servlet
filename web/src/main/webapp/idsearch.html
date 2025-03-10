@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>250217 응용문제</title>
+</head>
+<body>
+<form id="frm" method="post" action="./idsearch.do" onsubmit="return chk();">
+	고객명 : <input type = "text" name="username"> <br>
+	연락처 : <input type = "text" name="phone"> '-'미포함 숫자만 입력해주세요. <br>
+	이메일 : <input type = "text" name="email"> <br>
+	<input type="submit" value="아이디 찾기">
+</form>
+</body>
+<script>
+	function chk() {
+		if(frm.username.value==""){
+			//form사용 및 name값을 이미 사용했으므로 getElementById 없이 사용
+			alert("고객명을 입력하세요");
+			frm.username.focus();
+			return false;
+		}
+		else if(frm.phone.value==""){
+			alert("연락처를 입력하세요");
+			frm.phone.focus();
+			return false;
+		}
+		else if(frm.email.value==""){
+			alert("이메일을 입력하세요");
+			frm.email.focus();
+			return false;
+		}
+		else if(frm.phone.value.indexOf("-")!= -1){
+			alert("연락처는 -를 빼고 숫자만 입력하세요");
+			frm.phone.focus();
+			return false;
+		}
+		else{
+			return true;
+		}
+		
+	
+	}
+</script>
+</html>

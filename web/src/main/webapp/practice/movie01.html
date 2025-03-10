@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 250220 -->
+<title>영화예매 part 1 </title>
+</head>
+<body>
+<form id="frm">
+	<p>영화예매 시스템</p>
+	고객명 : <input type="text" name="uName"> <br>
+	연락처 : <input type="text" name="uPhone" maxlength="11"> *-*없이 숫자만 입력 <br>
+	영화선택 : <br>
+	<label><input type="radio" name="movieName" value="히트맨2"> 히트맨2 </label> <br>
+	<label><input type="radio" name="movieName" value="써니데이"> 써니데이 </label> <br>
+	<label><input type="radio" name="movieName" value="브루탈리스트"> 브루탈리스트 </label> <br>
+	<label><input type="radio" name="movieName" value="히어"> 히어 </label> <br>
+	<label><input type="radio" name="movieName" value="하얼빈"> 하얼빈 </label> <br>
+	예매일자 : <input type="date" name="mDay">
+	
+	<br><br>
+	<input type="button" value="예매하기" onclick="reservation();">
+
+</form>
+
+</body>
+<script src="./movie01.js?v=1"></script>
+</html>

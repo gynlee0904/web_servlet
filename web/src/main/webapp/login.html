@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>250217 - Servlet + login만들기</title>
+</head>
+<body>
+<form id="frm" method="post" action="./loginok.do" onsubmit="return ck();">
+<!-- JS에서 ck함수에서 리턴값을 받아 작동. 인풋타입이 submit이면 form태그에 onsubmit 작성. -->
+	아이디: <input type = "text" name="mid"> <br>
+	패스워드 : <input type = "text" name="mpass"> <br>
+<!-- 	name 속성은 백엔드로 전달되는 속성값임. 백엔드는 해당 값을 받아서 처리함 -->
+	<input type="submit" value="로그인">
+	<!-- 인풋타입이 submit이면 해당 태그에 onclick 절대 사용안함. -->
+</form>
+</body>
+<script>
+	function ck() {
+		if(frm.mid.value==""){
+			//form사용 및 name값을 이미 사용했으므로 getElementById 없이 사용
+			alert("아이디를 입력하세요");
+			frm.mid.focus();
+			return false;
+		}
+		else if(frm.mpass.value==""){
+			alert("패스워드를 입력하세요");
+			frm.mpass.focus();
+			return false;
+		}
+		else{
+			return true;
+			//return을 사용한 이유 : input에 submit을 사용했기 때문에. 
+			//인풋타입이 button이면 return을 못씀. 
+		}
+	}
+
+
+</script>
+</html>

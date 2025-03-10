@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 250220 -->
+<title>관리자페이지 로그인파트 </title>
+</head>
+<body>
+<form id="frm">
+	아이디 : <input type="text" name="adm_id"> <br>
+	패스워드 : <input type="password" name="adm_pw"> <br>
+	사원번호 : <input type="text" name="adm_no"> <br>
+	* 모든 정보는 기록되어집니다 <br><br>
+	<!-- ↑File IO를 사용해 로그기록 저장함 -->
+	<input type="button" value="로그인" onclick="login();">
+</form>
+</body>
+<script src="./login_admin.js"></script>
+<!-- 프엔에서 새 디렉토리 만들어 생성하면 백에서도 새 패키지 만들어 생성해야함  -->
+<!-- 디렉토리명과 패키지명은 일치시킨다 -->
+</html>

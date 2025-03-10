@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 250305 -->
+<title>자바스크립트의 정규식코드 사용법3</title>
+</head>
+<body>
+
+</body>
+<script>
+//전화번호 : 9~11자리, 휴대폰번호 : 10~11자리 
+//전화번호 검토하기
+// var word = "023311a245"
+// var word2 = word.replace(/ /g,"")  //모든 공백 제거 먼저 작업 
+// if(word2.length<9){
+// 	alert("정상적인 전화번호를 입력하세요");
+// }else {
+// 	var regp = /[^0-9]/g;
+// 	var check = regp.test(word2);
+// 	if(check==true){  //숫자 외의 다른 문자가 포함되어있을때 
+// 		console.log("올바른 연락처가 아닙니다");
+// 	}else {
+// 		console.log("올바른 연락처입니다");
+// 	}
+// }
+
+//휴대폰번호 검토하기
+var word = "0105521a203";
+if(word.length<10 || word.length>11){
+	console.log("올바른 휴대폰 번호를 입력하세요");
+}else { 
+	var regp = /^01\d{8,9}/g;  //01로 시작하고 7~8자리가 숫자로만 되어있는지 
+	console.log(regp.test(word));
+}
+
+//정규식 코드에 \를 사용하는 이유 : 특정문자를 기준으로 삼음 
+//ex) \@[a-z] => @기준 다음에 a~z가 포함되어있는지 
+
+
+
+</script>
+</html>
