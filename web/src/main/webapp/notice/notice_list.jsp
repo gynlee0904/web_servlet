@@ -4,6 +4,24 @@
 <%
 	ArrayList<ArrayList<String>> notice = (ArrayList<ArrayList<String>>)request.getAttribute("result");
 
+	//페이지 번호 생성 
+	String total_page = notice.get(0).get(5);
+	int pg = 1;
+	if(total_page != null || !total_page.equals("1")){  //게시물이 하나라도 있을때
+		float pg2 = Integer.parseInt(total_page)/3f;
+		pg = (int)Math.ceil(pg2);
+		
+// 		out.print(pg);
+
+	}
+	
+	/*페이징 생성 방법 
+	  1. 한페이지 당 데이터를 몇개씩 출력할건지 설정 
+	  2. 데이터베이스에 있는 데이터의 총갯수/한페이지당 개수 (=>소수점)
+	  3. Math.ceil 사용하는 이유는 소수점으로 나올시 반올림으로 페이지가 추가되도록 하기 위함.
+	*/
+	
+
 %>
 <!DOCTYPE html>
 <html>
@@ -13,7 +31,7 @@
 <title>공지사항 리스트</title>
 </head>
 <body>
-	<p>현재 등록된 게시물 : <%= notice.size() %> 개</p>
+	<p>현재 등록된 게시물 : <%= notice.get(0).get(5) %> 개</p>
 	<table border="1" cellpadding="0" cellspacing="0">
 		<thead>
 			<tr>
@@ -43,6 +61,21 @@
 		   } 
 		%>
 		</tbody>
+	</table>
+	<br><br><br>
+	<table border="1">
+		<tr>
+		<% 
+			int ww =1;
+			while(ww<=pg){
+		%>
+			<td width=20 height=20 align="center"><a href="./notice_list.do?pageNo=<%=ww %>"><%=ww %></a></td>
+		<%
+				ww++;
+			}
+			
+		%>
+		</tr>
 	</table>
 </body>
 <script>

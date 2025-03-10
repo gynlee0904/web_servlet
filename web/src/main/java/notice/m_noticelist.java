@@ -19,10 +19,13 @@ public class m_noticelist {
 	ArrayList<String> data = null;  //각 컬럼별 값을 저장 
 	ArrayList<ArrayList<String>> alldata = null;  //데이터베이스 전체 데이터 
 	
+	int spage = 0;  //첫번째 배열 노드
+	int ea = 3; //한페이지당 나타내는 게시물 수 (=>3개) 
+	
 	m_dbinfo db = new m_dbinfo();
 	
-	public m_noticelist() {
-		
+	public m_noticelist(int s) {
+		this.spage= s; //sql 쿼리문에서 limit를 사용하기위함
 	}
 	
 	public ArrayList<ArrayList<String>> db_data(){
@@ -30,8 +33,13 @@ public class m_noticelist {
 		try {
 			this.con = db.conn();
 			//필요한 컬럼만 지정하여 select문법으로 데이터를 가져오는 코드 
-			this.sql = "select nidx, subject, writer, nview, ndate from notice order by nidx desc";
+			this.sql = "select nidx, subject, writer, nview, ndate, "
+					+ "(select count(*) from notice) as total from notice "
+					+ "order by nidx desc limit ?,?";  //기본은 limit0,3
 			this.ps = this.con.prepareStatement(this.sql);
+			this.ps.setInt(1, this.spage);
+			this.ps.setInt(2, this.ea);
+			
 			this.rs = this.ps.executeQuery();
 			
 			//반복문으로 테이블에 있는 컬럼을 하나씩 1차배열에 넣은 후 2차배열에 넣는 코드  
@@ -43,6 +51,7 @@ public class m_noticelist {
 				this.data.add(this.rs.getString("writer"));
 				this.data.add(this.rs.getString("nview"));
 				this.data.add(this.rs.getString("ndate"));
+				this.data.add(this.rs.getString("total"));
 				
 				this.alldata.add(this.data);
 			}
