@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 250311 -->
+<title>Ajax - JQuery(POST)</title>
+<!-- 250305 jq04.html와 비교해서 보기 -->
+<script src="../jquery/jquery.js"></script>
+</head>
+<body>
+아이디 : <input type="text" id="mid"> <br>
+이메일 : <input type="text" id="memail"> 
+<input type="button" value="전송" id="btn"> 
+
+</body>
+<script>
+$(()=>{
+	$("#btn").click(()=>{
+		if($("#mid").val()==""){
+			alert("아이디를 입력하세요");
+		}
+		else if($("#memail").val()==""){
+			alert("이메일을 입력하세요");
+		}
+		else{
+			//ajax post통신 
+			$.ajax({
+				url : "./ajax_postok.do",  //BE로 보낼 경로 
+				type : "post",  //전송방식
+				contentType : "application/x-www-form-urlencoded",  //암호화 =>안넣어도 됨(jquery는 엔진에 기본탑재되어있음)
+				cache : false,   //캐시에 저장되지 않게 캐시 갱신시켜줘야 함. 반드시 써줄것. ""안붙임!!
+				data :{  
+					"userid":$("#mid").val(),
+					"useremail":$("#memail").val()  
+				},
+				//post전송시 값을 키값 형태로 보냄 
+				
+				success : function(response){
+					console.log(response);
+				},
+				//정상적으로 값이 전송되었을때 (=xhr 200 통신이 발생시 작동)
+				
+				error : function(error){
+					console.log("오류발생 : "+ error);
+				}
+				//비정상적으로 값이 전송되었을때 (=xhr 200 외 숫자 발생시 작동)
+			});
+		}
+		
+	});
+});
+
+
+</script>
+</html>

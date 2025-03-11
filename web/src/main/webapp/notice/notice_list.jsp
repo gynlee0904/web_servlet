@@ -18,7 +18,9 @@
 	}
 
 	//get page번호를 가져오는 방식 
-	String pno = request.getParameter("pageNo");
+	String pno = request.getParameter("pageNo");  
+	//밑의 페이징에서 숫자를 클릭시 do가 작동하면서 동시에 jsp가 작동 => 컨트롤러를 안통하고 바로 pageNo값을 받을 수 있음(JSP도 하나의 언어이기 때문에)
+			
 	if(pno == null || pno.equals("1")){  
 	//최초 게시판리스트에 접근시 페이지 번호가 없거나 1페이지를 클릭한 경우 
 		pno = "1";
@@ -68,6 +70,8 @@
 		</tbody>
 	</table>
 	<br><br><br>
+	
+	<!-- 페이징 -->
 	<table border="1">
 		<tr>
 		<% 
