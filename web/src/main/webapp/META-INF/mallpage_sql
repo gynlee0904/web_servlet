@@ -1,0 +1,37 @@
+create table corp_info (
+	corp_nm char(100),
+	ceo_nm varchar(100),
+	corp_addr varchar(200),
+	corp_tel char(40),
+	corp_time varchar(40),
+	ceo_email varchar(100),
+	corp_no char(13),
+	corp_no2 varchar(40),
+	corp_master char(30),
+	corp_domain varchar(60)
+);
+
+insert into corp_info values ('(주)중앙정보처리','이기윤','서울시 마포구 마포대로 26-4 4F','1588-0808, 070-222-0808','10:00~18:00','choongang@naver.com','123-12-56789','제21호 12345678','홍길동','abc.co.kr');
+
+select * from corp_info;
+
+
+create table joins (
+	midx int unsigned auto_increment,
+	mid char(40) not null, 
+	mpass varchar(50) not null,
+	mname char(40) not null,
+	memail varchar(80) not null, 
+	mtel varchar(11) not null, 
+	event_mail enum('Y','N') not null default 'Y',
+	event_sms enum('Y','N') not null default 'Y',
+	joindate timestamp not null default current_timestamp,
+	primary key(midx),
+	unique uid(mid),
+	unique uml(memail),
+	unique utl(mtel)
+);
+
+select * from joins;
+
+drop table joins;
