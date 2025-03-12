@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 250312 -->
+<title>Ajax 파일전송 - Jquery </title>
+<!-- 파일전송은 POST밖에 없음  -->
+<!-- 250305 jq04.html와 비교해서 보기 -->
+<script src="../jquery/jquery.js"></script>
+</head>
+<body>
+이미지 첨부파일 : <input type="file" id="mfile">
+<input type="button" value="전송" id="btn"> 
+</body>
+<script>
+$(()=>{
+	$("#btn").click(function(){
+		if($("#mfile").val()==""){
+			alert("파일을 첨보하셔야 합니다");
+		}else{
+// 			var $formdata = new FormData($("frm")[0]);  //=>html에 form태그를 썼을떄 사용할수 있는 구조
+
+			/*jquery의 IO방식은 2가지 방식이 있음 
+			  1. html에서 <form>태그 선언 후 new FormData()를 이용해 BE로 전달 =>실무에선 잘 안씀 
+			  2. <form>태그가 없을 경우 id값을 이용해 배열기호 + .files[] 까지 적용해야함 =>$("#mfile")[0].files[0]
+			*/
+			
+			/* 
+			var $fileup = $("#mfile")[0];
+			var $file = $fileup.files[0];
+
+			var $formdata = new FormData();
+			$formdata.append("mfile", $file);
+			console.log($formdata.get("mfile"));
+			↑짧게 쓴 거↓ */
+
+			var $formdata = new FormData();
+			$formdata.append("mfile", $("#mfile")[0].files[0]);
+			console.log($formdata.get("mfile"));
+			
+			$.ajax({
+				url: "./ajax_fileok.do",
+				cache: false,
+				type: "post",
+				dataType:"HTML",
+				data : $formdata,  //파일전송시 data를 적용하는 방식 
+				contentType : false,   //multipart form-data를 처리하기 위해 false로 설정. 안쓰면 true로 설정됨 
+				processData : false,   //데이터를 문자화하지 않도록 false로 설정. 안쓰면 true로 설정됨  
+				success:function(result){  //통신 성공 및 리턴값 처리 
+					console.log("결과:"+result);
+					if(result=="ok"){
+						alert("올바르게 파일이 전송되었습니다")
+					}
+				},
+				error: function(error){  //BE와 통신 실패시 
+					console.log(error);
+				}
+			});
+		}
+	});
+});
+
+
+
+
+</script>
+</html>
