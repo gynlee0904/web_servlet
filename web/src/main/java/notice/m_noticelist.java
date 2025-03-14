@@ -70,6 +70,7 @@ public class m_noticelist {
 			
 		} finally {
 			try {
+				this.rs.close();
 				this.ps.close();
 				this.con.close();
 				

@@ -35,3 +35,32 @@ create table joins (
 select * from joins;
 
 drop table joins;
+
+
+create table mall_product(
+	midx int unsigned auto_increment,
+	pcode char(7) not null, 
+	pnm varchar(200) not null, 
+	pmoney varchar(7) not null,
+	psales varchar(2) not null,	
+ 	psmoney varchar(7) not null, 
+	pimg text,
+	pdate timestamp not null default current_timestamp,
+	primary key(midx),
+	unique pcd(pcode)
+);
+
+select * from mall_product;
+
+insert into mall_product values ('0','A313609','pink_bag','98000','0','0','/product/pink_bag.png',now());
+insert into mall_product values ('0','A313610','classic_loafer','458000','10','412200','/product/classic_loafer.png',now());
+insert into mall_product values ('0','A313611','fedora_hat','147000','10','132300','/product/fedora_hat.png',now());
+insert into mall_product values ('0','A313612','wrist_watch','320000','0','0','/product/wrist_watch.png',now());
+insert into mall_product values ('0','A313613','slippers','17000','0','0','/product/slippers.png',now());
+insert into mall_product values ('0','A313614','sneakers','275000','5','261250','/product/sneakers.png',now());
+insert into mall_product values ('0','A313615','beige_bag','643000','5','610850','/product/beige_bag.png',now());
+insert into mall_product values ('0','A313616','tassel_loafer','339000','20','271200','/product/tassel_loafer.png',now());
+insert into mall_product values ('0','A313617','sunglasses','278000','15','2363000','/product/sunglasses.png',now());
+
+
+
